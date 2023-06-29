@@ -13,15 +13,15 @@
     </style>
 </head>
 <body>
-  <div class="container">
+<div>
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <div class="col-md-3 mb-2 mb-md-0">
+      <div class="head-button-left col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
           <text x="0" y="20">ToDoList</text>
         </a>
       </div>
 
-      <div class="col-md-3 text-end">
+      <div class="head-button-right col-md-3 text-end">
         <a href="{{ url_for('login') }}"><button type="button" class="btn btn-outline-primary me-2">Войти</button></a>
         <a href="{{ url_for('register') }}"><button type="button" class="btn btn-primary">Регистрация</button></a>
       </div>
