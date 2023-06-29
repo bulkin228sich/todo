@@ -1,4 +1,4 @@
- {% extends 'templates/base.html' %}
+ {% extends 'base.html' %}
 
 {% block content %}
   <!-- Началась визуальная часть -->
@@ -91,6 +91,7 @@ class Task {
             });
         }
 
+
     // Сразу вызываем эту функцию, вдруг в памяти уже остались задачи с прошлого раза
     showTasks();
     // Следим, когда пользователь напишет новую задачу в поле ввода и нажмёт добавить
@@ -128,17 +129,15 @@ class Task {
     jet.remove();
     })
 
-    $(document).on('click', '.change-button', function (e) {
-      debugger;
-    e.stopPropagation();
 
-    var jetn = $(e.target).closest('li');
-    let taskObjec = JSON.parse(localStorage.getItem(jetn.attr('data-itemid')));
+    $(document).on('click', '.change-button', function (e) {
+    var jet = $(e.target).closest('li');
+    let taskObjec = JSON.parse(localStorage.getItem(jet.attr('data-itemid')));
     let changeTask = new Task(String(taskObjec.id), String(taskObjec.task), String(taskObjec.info), String(taskObjec.status), Boolean(taskObjec.chek));
     // и убираем её из списка
        debugger;
          debugger;
-    jetn.html('<div class="my-div">' +
+    jet.html('<div class="my-div">' +
             '      <input type="text" class="form-control inputtask-style" id="newTitleTask" placeholder="Тема" >\n' +
             '      <div class="div-height10 "></div>\n' +
 
@@ -149,18 +148,19 @@ class Task {
     );
       $('#newTitleTask').val(changeTask.task);
       $('#newInfo').val(changeTask.info);
-      jetn.css('align-items', 'stretch');
+      jet.css('align-items', 'stretch');
     })
 
   $(document).on('click', '.saveChange', function (t) {
-        var jet = $(t.target).closest('li');
-        let taskObjec = JSON.parse(localStorage.getItem(jet.attr('data-itemid')));
+        var jetn = $(t.target).closest('li');
+        let taskObjec = JSON.parse(localStorage.getItem(jetn.attr('data-itemid')));
         let changeTask =  new Task(String(taskObjec.id), String($('#newTitleTask').val()), String( $('#newInfo').val()), String(taskObjec.status), Boolean(taskObjec.chek));
-        localStorage.setItem(jet.attr('data-itemid'), JSON.stringify(changeTask));
+        localStorage.setItem(jetn.attr('data-itemid'), JSON.stringify(changeTask));
         debugger;
         List.empty();
         showTasks();
         })
+
 
   $(document).on('change', '.form-check-input', function() {
    var listItem = $(this).closest('li');
@@ -181,6 +181,8 @@ class Task {
   }
   localStorage.setItem(i, JSON.stringify(chekTask));
 });
+
  // Закончился основной скрипт
   </script>
+  <!-- Закончилось содержимое страницы-->
  {% endblock %}
