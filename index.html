@@ -1,15 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{% block title %}{% endblock %}</title>
+  <title>ToDoList</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="static/css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <style>
       body {
         background-color: #f5f9ff;
       }
+      body {
+    text-align: center;
+    margin: 10px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  /* Настраиваем внешний вид поля ввода*/
+  input {
+    display: inline-block;
+    margin: 20px auto;
+    border: 2px solid #eee;
+    padding: 10px 20px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16px;
+  }
+
+  /*Как будет выглядеть каждый элемент нашего списка*/
+  .tdItem {
+    text-align: left;
+    padding: 10px;
+    cursor: default;
+    border-radius: 7px;
+  }
+  /*Что произойдёт, когда мы наведём курсор на любую задачу из списка*/
+  .tdItem:hover {
+    background-color: lightblue;
+  }
+  button {
+    float: left;
+    padding: 10px;
+    cursor: default;
+    border-radius: 7px;
+}
+  a {
+  float: left;
+}
+  .text-end {
+  text-align: right;
+}
+  .button-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+    margin-bottom: 5px;
+     margin-right: 10px;
+}
+  .tdItem {
+  position: relative;
+}
+
+#newTask {
+  float: right;
+}
+
+#task {
+  font-size: 19px; /* установите размер шрифта */
+  /* установите отступы внутри поля */
+  border: none; /* установите границу поля */
+  max-width: 100%;
+}
+#info {
+  font-size: 16px; /* установите размер шрифта */
+  border: none; /* установите границу поля */
+  max-width: 100%;
+}
+
+.task-style {
+  font-size: 19px; /* установите размер шрифта */
+   /* установите box-sizing для учета границы в высоте поля */
+  max-width: 100%;
+}
+.dark-check-element{
+  position: relative; /* установим позиционирование, чтобы передний план работал корректно */
+  background-color: rgba(255, 255, 255, 0.5); /* устанавливаем полупрозрачный белый цвет фона */
+  opacity: 0.5;
+}
+.info-style {
+  font-size: 16px; /* установите размер шрифта */
+  /* установите отступы внутри поля */
+  border: none; /* установите границу поля */
+  max-width: 100%;
+}
+  ul-li {
+  margin-bottom: 50px; /* здесь 10px - это размер отступа */
+}
+  span {
+  overflow: hidden;
+  text-overflow: ellipsis; /* добавляет многоточие в конец текста, если он выходит за пределы блока */
+}
+  li {
+     margin-bottom: 10px;
+  background-color: white; /* цвет фона */
+   /* граница с цветом #ccc и толщиной 1px */
+  padding: 10px; /* отступ внутри элемента списка */
+}
+  .input-check {
+  width: 20px;
+  height: 20px;
+}
+  .div-height10 {
+    width: 100%;
+  height: 10px;
+}
+  .my-div {
+      min-height: 130px;
+      width: 100%; /* ширина равна 100% ширины родительского элемента */
+    }
     </style>
 </head>
 <body>
@@ -36,9 +144,7 @@
     <!-- Поле ввода, куда пишем новые задачи -->
     <div id="tdlApp">
       <input type="text" class="form-control inputtask-style" id="task" placeholder="Тема">
-      <br>
       <input type="text" class="form-control inputinfo-style" id="info" placeholder="Описание">
-      <br>
       <button type="button" class="btn btn-outline-primary me-2" id="newTask" style="float: right;">Добавить задачу</button>
       <br>
         <br>
@@ -168,10 +274,10 @@ class Task {
          debugger;
     jetn.html('<div class="my-div">' +
             '      <input type="text" class="form-control inputtask-style" id="newTitleTask" placeholder="Тема" >\n' +
-            '      <div class="div-height10 "></div>\n' +
+            '      \n' +
 
             '      <input type="text" class="form-control inputinfo-style" id="newInfo" placeholder="Описание" >\n' +
-            '      <div class="div-height10"></div>\n' +
+            '      <br>\n' +
                   '<div class="button-container">\n' +
             '      <button type="button" class="btn btn-outline-primary me-2 saveChange" id="saveChange" style="float: right;">Сохранить</button></div></div>'
     );
@@ -215,8 +321,6 @@ class Task {
   <!-- Закончилось содержимое страницы-->
   </div>
 
-
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 </html>
