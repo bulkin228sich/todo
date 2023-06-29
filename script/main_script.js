@@ -77,9 +77,9 @@ class Task {
       let taskObject = JSON.parse(localStorage.getItem(key));
       let oldTask = new Task(String(taskObject.id), String(taskObject.task), String(taskObject.info), String(taskObject.status), Boolean(taskObject.chek));
       if (oldTask.chek) {
-                var tdItem = $('<li class="tdItem dark-check-element"></li>');
+                 var tdItem = $('<div></div>');
               } else {
-                var tdItem = $('<li class="tdItem"></li>');
+                var tdItem = $('<div></div>');
               }
 
               // и делаем это элементами списка
