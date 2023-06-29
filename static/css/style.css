@@ -1,4 +1,17 @@
-
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  min-width: 500px; /* Задаем минимальную ширину */
+  margin-left: auto; /* Сдвигаем элемент вправо */
+  margin-right: auto; /* Сдвигаем элемент влево */
+  max-width: 960px; /* Ограничиваем максимальную ширину */
+}
       /*Задаём общие параметры для всей страницы: шрифт и отступы*/
   body {
     text-align: center;
