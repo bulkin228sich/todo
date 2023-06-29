@@ -23,39 +23,8 @@ class Task {
           });
 
         keys.forEach(key => {
-              let taskObject = JSON.parse(localStorage.getItem(key));
-              let oldTask = new Task(String(taskObject.id), String(taskObject.task), String(taskObject.info), String(taskObject.status), Boolean(taskObject.chek));
-              // и делаем это элементами списка
-              if (oldTask.chek) {
-                var tdItem = $('<li class="tdItem dark-check-element"></li>');
-              } else {
-                var tdItem = $('<li class="tdItem"></li>');
-              }
-              tdItem.attr('data-itemid', key)
-                      .append($('<span class="task-style"></span>').text(oldTask.task))
-                      .append($('<br>'))
-                      .append($('<span class="info-style"></span>').text(oldTask.info))
-                      .append($('<br><br>'))
-                      .appendTo(List);
-
-              var buttonContainer = $('<div></div>').addClass('button-container');
-              if (oldTask.chek) {
-                buttonContainer.append($('<input class=" form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;" checked>').attr('id', key));
-              } else {
-                buttonContainer.append($('<input class="form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;">').attr('id', key).css({
-                  'border-color': '#5987fd'
-                }));
-              }
-              buttonContainer
-                      .append($('<button></button>').addClass('btn btn-outline-primary me-2 delete-button').text('Удалить').css({
-                        'float': 'center'
-                      }))
-                      .append($('<button></button>').addClass('btn btn-outline-primary me-2 change-button').text('Изменить').css({
-                        'float': 'left'
-                      }))
-                      .appendTo(tdItem);
-              $('<br>').appendTo(tdItem);
-            });
+             appendTask(key);
+        });
         }
 
 
@@ -101,14 +70,57 @@ class Task {
 
 
     $(document).on('click', '.change-button', function (e) {
+    if ($('.changed').length) {
+
+      var listItem = $('.changed');
+      var key = listItem.attr('data-itemid');
+      let taskObject = JSON.parse(localStorage.getItem(key));
+      let oldTask = new Task(String(taskObject.id), String(taskObject.task), String(taskObject.info), String(taskObject.status), Boolean(taskObject.chek));
+      if (oldTask.chek) {
+                var tdItem = $('<li class="tdItem dark-check-element"></li>');
+              } else {
+                var tdItem = $('<li class="tdItem"></li>');
+              }
+
+              // и делаем это элементами списка
+
+              tdItem.attr('data-itemid', key)
+                      .append($('<span class="task-style"></span>').text(oldTask.task))
+                      .append($('<br>'))
+                      .append($('<span class="info-style"></span>').text(oldTask.info))
+                      .append($('<br><br>'));
+
+              var buttonContainer = $('<div></div>').addClass('button-container');
+              if (oldTask.chek) {
+                buttonContainer.append($('<input class=" form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;" checked>').attr('id', key).css({
+                  'border-color': '#5987fd'
+                }));
+              } else {
+                buttonContainer.append($('<input class="form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;">').attr('id', key).css({
+                  'border-color': '#5987fd'
+                }));
+              }
+              buttonContainer
+                      .append($('<button></button>').addClass('btn btn-outline-primary me-2 delete-button').text('Удалить').css({
+                        'float': 'center'
+                      }))
+                      .append($('<button></button>').addClass('btn btn-outline-primary me-2 change-button').text('Изменить').css({
+                        'float': 'left'
+                      }))
+                      .appendTo(tdItem);
+              $('<br>').appendTo(tdItem);
+
+      listItem.html(tdItem);
+      listItem.removeClass('changed');
+    }
+
     var jet = $(e.target).closest('li');
-    let taskObjec = JSON.parse(localStorage.getItem(jet.attr('data-itemid')));
+    var keyc = jet.attr('data-itemid')
+    let taskObjec = JSON.parse(localStorage.getItem(keyc));
     let changeTask = new Task(String(taskObjec.id), String(taskObjec.task), String(taskObjec.info), String(taskObjec.status), Boolean(taskObjec.chek));
     // и убираем её из списка
-       debugger;
-         debugger;
-     e.stopPropagation(); // Остановка всплытия события
-    e.preventDefault();
+    jet.addClass('changed');
+
     debugger;
 
     jet.html('<div class="my-div">' +
@@ -131,14 +143,14 @@ class Task {
         let taskObjec = JSON.parse(localStorage.getItem(jetn.attr('data-itemid')));
         let changeTask =  new Task(String(taskObjec.id), String($('#newTitleTask').val()), String( $('#newInfo').val()), String(taskObjec.status), Boolean(taskObjec.chek));
         localStorage.setItem(jetn.attr('data-itemid'), JSON.stringify(changeTask));
-        debugger;
+
         List.empty();
         showTasks();
-        })
+  })
 
 
   $(document).on('change', '.form-check-input', function() {
-      debugger;
+
    var listItem = $(this).closest('li');
    var i = listItem.attr('data-itemid');
    let taskOb = JSON.parse(localStorage.getItem(i));
@@ -156,3 +168,41 @@ class Task {
   }
   localStorage.setItem(i, JSON.stringify(chekTask));
 });
+
+
+    function appendTask(key) {
+      let taskObject = JSON.parse(localStorage.getItem(key));
+              let oldTask = new Task(String(taskObject.id), String(taskObject.task), String(taskObject.info), String(taskObject.status), Boolean(taskObject.chek));
+              // и делаем это элементами списка
+              if (oldTask.chek) {
+                var tdItem = $('<li class="tdItem dark-check-element"></li>');
+              } else {
+                var tdItem = $('<li class="tdItem"></li>');
+              }
+              tdItem.attr('data-itemid', key)
+                      .append($('<span class="task-style"></span>').text(oldTask.task))
+                      .append($('<br>'))
+                      .append($('<span class="info-style"></span>').text(oldTask.info))
+                      .append($('<br><br>'))
+                      .appendTo(List);
+
+              var buttonContainer = $('<div></div>').addClass('button-container');
+              if (oldTask.chek) {
+                buttonContainer.append($('<input class=" form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;" checked>').attr('id', key).css({
+                  'border-color': '#5987fd'
+                }));
+              } else {
+                buttonContainer.append($('<input class="form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;">').attr('id', key).css({
+                  'border-color': '#5987fd'
+                }));
+              }
+              buttonContainer
+                      .append($('<button></button>').addClass('btn btn-outline-primary me-2 delete-button').text('Удалить').css({
+                        'float': 'center'
+                      }))
+                      .append($('<button></button>').addClass('btn btn-outline-primary me-2 change-button').text('Изменить').css({
+                        'float': 'left'
+                      }))
+                      .appendTo(tdItem);
+              $('<br>').appendTo(tdItem);
+    }
