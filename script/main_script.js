@@ -40,9 +40,9 @@ class Task {
 
               var buttonContainer = $('<div></div>').addClass('button-container');
               if (oldTask.chek) {
-                buttonContainer.append($('<input class=" form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;" checked>'));
+                buttonContainer.append($('<input class=" form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;" checked>').attr('id', key));
               } else {
-                buttonContainer.append($('<input class="form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;">').css({
+                buttonContainer.append($('<input class="form-check-input btn flex-shrink-0 checkbox input-check" type="checkbox" value="" style="font-size: 1.375em;">').attr('id', key).css({
                   'border-color': '#5987fd'
                 }));
               }
@@ -88,6 +88,8 @@ class Task {
     });
 
     $(document).on('click', '.delete-button', function (e) {
+      e.stopPropagation(); // Остановка всплытия события
+    e.preventDefault();
     // Находим задачу, по которой кликнули
     e.stopPropagation();
     // Убираем её из памяти
@@ -107,7 +109,7 @@ class Task {
          debugger;
      e.stopPropagation(); // Остановка всплытия события
     e.preventDefault();
-
+    debugger;
 
     jet.html('<div class="my-div">' +
             '      <input type="text" class="form-control inputtask-style" id="newTitleTask" placeholder="Тема" >\n' +
@@ -124,6 +126,7 @@ class Task {
     })
 
   $(document).on('click', '.saveChange', function (t) {
+    t.preventDefault();
         var jetn = $(t.target).closest('li');
         let taskObjec = JSON.parse(localStorage.getItem(jetn.attr('data-itemid')));
         let changeTask =  new Task(String(taskObjec.id), String($('#newTitleTask').val()), String( $('#newInfo').val()), String(taskObjec.status), Boolean(taskObjec.chek));
@@ -135,10 +138,10 @@ class Task {
 
 
   $(document).on('change', '.form-check-input', function() {
+      debugger;
    var listItem = $(this).closest('li');
    var i = listItem.attr('data-itemid');
-   var key = localStorage.key(i);
-   let taskOb = JSON.parse(localStorage.getItem(key));
+   let taskOb = JSON.parse(localStorage.getItem(i));
    let chekTask = new Task(Number(taskOb.id), String(taskOb.task), String(taskOb.info), String(taskOb.status), Boolean(taskOb.chek));
    localStorage.removeItem(i);
 
