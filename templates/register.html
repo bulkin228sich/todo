@@ -69,11 +69,9 @@
   const registrationForm = document.getElementById('registration-form');
 
   // Добавление обработчика события на отправку формы
-  registrationForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    
-    const username = registrationForm.username.value;
-    const password = registrationForm.password.value;
+  registrationForm.addEventListener('submit', (event) => {    
+    const username = username.value;
+    const password = password.value;
     debugger
     // Добавление нового пользователя в коллекцию 'user'
     addDoc(collection(db, 'user'), {
