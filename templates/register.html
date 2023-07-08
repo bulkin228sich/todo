@@ -30,7 +30,7 @@
 
   <div class="container" style="width: 400px; margin: auto;">
     <h1>Регистрация</h1>
-    <form method="post">
+    <form id="registration-form">
         <label for="username">Имя пользователя:</label>
          <br>
         <input type="text" id="username" name="username" required>
@@ -46,26 +46,45 @@
  <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyDslTfzea0KFaVHszP6Q8BPst6prF1obmY",
-    authDomain: "todolist-e24ca.firebaseapp.com",
-    projectId: "todolist-e24ca",
-    storageBucket: "todolist-e24ca.appspot.com",
-    messagingSenderId: "173648301613",
-    appId: "1:173648301613:web:28337caf368ff49aee72a4"
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
   };
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  var db = firebase.firestore();
-  var userCollection = db.collection('user');
-  
+  const db = getFirestore(app);
 
-   
+  // Получение формы регистрации
+  const registrationForm = document.getElementById('registration-form');
+
+  // Добавление обработчика события на отправку формы
+  registrationForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    
+    const username = registrationForm.username.value;
+    const password = registrationForm.password.value;
+    
+    // Добавление нового пользователя в коллекцию 'user'
+    addDoc(collection(db, 'user'), {
+      name: username,
+      password: password,
+      task: ''
+    })
+    .then(() => {
+      console.log('Новый пользователь успешно добавлен в базу данных');
+    })
+    .catch((error) => {
+      console.error('Ошибка при добавлении нового пользователя в базу данных:', error);
+    });
+  });
 </script>
 </body>
 </html>
