@@ -74,7 +74,7 @@ appId: "1:173648301613:web:28337caf368ff49aee72a4"
     const password = password.value;
     debugger
     // Добавление нового пользователя в коллекцию 'user'
-    addDoc(collection(db, 'todolist', 'user'), {
+    setDoc(collection(db, 'todolist', 'user'), {
       name: username,
       password: password,
       task: ''
