@@ -303,7 +303,7 @@ loginLink.addEventListener("click", function(event) {
   sessionStorage.clear();
 });
 
-document.getElementById("sortTask").addEventListener("click", function() {
+document.getElementById("sortTask").addEventListener("click", function(e) {
     if (Filter) {
         Filter = false;
     e.target.classList.remove("btn-primary");
