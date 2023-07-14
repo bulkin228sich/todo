@@ -49,20 +49,24 @@ async function loadingSession() {
         return JSON.parse(dataString).task; // Возвращаем данные для передачи в следующий обработчик
       })
       .then((taskData) => {
-        date = JSON.parse(taskData);
-        Object.entries(date).forEach(([key, value]) => {
-          sessionStorage.setItem(key, value);
-        });
+        if (taskData) {
+          date = JSON.parse(taskData);
+          Object.entries(date).forEach(([key, value]) => {
+            sessionStorage.setItem(key, value);
+          });
+        };
       })
       .then(() => {
         showTasks();
       });
   }
-
 // Функция, которая берёт из памяти наши задачи и делает из них список
 function showTasks() {
      var keys = Object.keys(storage)
-      .filter(key => key.startsWith(Mask))
+    if (keys.length === 0) {
+      return;
+    }
+    keys.filter(key => key.startsWith(Mask))
       .sort((a, b) => {
         const aIndex = Number(a.slice(Mask.length));
         const bIndex = Number(b.slice(Mask.length));
