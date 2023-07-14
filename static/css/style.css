@@ -123,5 +123,8 @@ header {
       min-height: 130px;
       width: 100%; /* ширина равна 100% ширины родительского элемента */
     }
-
+#errors {
+  color: red;
+  min-height: 25px;
+}
 
