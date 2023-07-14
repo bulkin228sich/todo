@@ -306,8 +306,12 @@ loginLink.addEventListener("click", function(event) {
 document.getElementById("sortTask").addEventListener("click", function() {
     if (Filter) {
         Filter = false;
+    e.target.classList.remove("btn-primary");
+    e.target.classList.add("btn-outline-primary");
     } else{
         Filter = true;
+    e.target.classList.remove("btn-outline-primary");
+    e.target.classList.add("btn-primary");
     }
     showTasks();
 });
