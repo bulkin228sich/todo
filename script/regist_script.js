@@ -43,7 +43,7 @@ document.getElementById('registration-form').addEventListener('submit', async fu
                         return
                       }
                   }).then(() => {
-                     window.location.href = "../todo/index.html";
+                     window.location.href = "../index.html";
                     });
               }, 500);
           });
