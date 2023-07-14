@@ -33,7 +33,7 @@ var Filter = false;
 
 if (localStorage.getItem("user") !== null) {
     const divElement = document.querySelector(".head-button-right");
-    divElement.innerHTML = `<a href="{{ url_for('login') }}"><button type="button" class="btn btn-outline-primary me-2">Выйти</button></a>`;
+    divElement.innerHTML = `<a href="https://bulkin228sich.github.io/todo/templates/login.html"><button type="button" class="btn btn-outline-primary me-2">Выйти</button></a>`;
     var storage = sessionStorage;
     loadingSession();
 } else {
