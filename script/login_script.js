@@ -28,7 +28,7 @@ document.getElementById('post').addEventListener('submit', async function(event)
         } else {
             const docId = querySnapshot.docs[0].id;
             localStorage.setItem("user", docId);
-            window.location.href = "../todo/index.html";
+            window.location.href = "../index.html";
         }
       });
 
