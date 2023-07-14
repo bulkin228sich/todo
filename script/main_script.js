@@ -233,6 +233,7 @@ $(document).on('change', '.form-check-input', function() {
    if (localStorage.getItem("user") !== null) {
       saveUserList();
     }
+  showTasks();
 });
 
 
