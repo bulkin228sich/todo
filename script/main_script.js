@@ -71,7 +71,6 @@ function showTasks() {
     if (Filter){
         const trueObjects = [];
         const falseObjects = [];
-        debugger
     keys.forEach(function(key) {
       const object = JSON.parse(storage.getItem(key));
       if (object.chek === true) {
