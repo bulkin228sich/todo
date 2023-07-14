@@ -43,7 +43,6 @@ document.getElementById('registration-form').addEventListener('submit', async fu
                         return
                       }
                   }).then(() => {
-                      debugger
                      window.location.href = "http://127.0.0.1:5000/";
                     });
               }, 500);
