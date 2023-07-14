@@ -62,8 +62,8 @@ async function loadingSession() {
   }
 // Функция, которая берёт из памяти наши задачи и делает из них список
 function showTasks() {
-     var keys = Object.keys(storage);
-    keys.filter(key => key.startsWith(Mask))
+     var keys = Object.keys(storage)
+      .filter(key => key.startsWith(Mask))
       .sort((a, b) => {
         const aIndex = Number(a.slice(Mask.length));
         const bIndex = Number(b.slice(Mask.length));
