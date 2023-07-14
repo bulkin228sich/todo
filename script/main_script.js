@@ -33,7 +33,7 @@ var Filter = false;
 
 if (localStorage.getItem("user") !== null) {
     const divElement = document.querySelector(".head-button-right");
-    divElement.innerHTML = `<a href="https://bulkin228sich.github.io/todo/templates/login.html"><button type="button" class="btn btn-outline-primary me-2">Выйти</button></a>`;
+    divElement.innerHTML = `<a href="templates/login.html"><button type="button" class="btn btn-outline-primary me-2">Выйти</button></a>`;
     var storage = sessionStorage;
     loadingSession();
 } else {
@@ -63,15 +63,15 @@ async function loadingSession() {
 // Функция, которая берёт из памяти наши задачи и делает из них список
 function showTasks() {
      var keys = Object.keys(storage)
-    if (keys.length === 0) {
-      return;
-    }
     keys.filter(key => key.startsWith(Mask))
       .sort((a, b) => {
         const aIndex = Number(a.slice(Mask.length));
         const bIndex = Number(b.slice(Mask.length));
         return bIndex - aIndex;
       });
+   if (keys.length === 0) {
+      return;
+    }
     if (Filter){
         const trueObjects = [];
         const falseObjects = [];
