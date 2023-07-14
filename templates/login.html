@@ -30,7 +30,7 @@
 
   <div class="container" style="width: 400px; margin: auto;">
     <h1>Вход</h1>
-    <form method="post">
+    <form id="post">
         <label for="username">Имя пользователя:</label>
          <br>
         <input type="text" id="username" name="username" required>
@@ -38,11 +38,14 @@
         <label for="password">Пароль:</label>
          <br>
         <input type="password" id="password" name="password" value="Войти">
-        <br>
+        <br><label id="errors" ></label>
         <br>
         <input type="submit" value="Войти">
     </form>
  </div>
 
+ <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+<script type="module" src="../script/login_script.js"></script>
 </body>
 </html>
