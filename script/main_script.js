@@ -292,7 +292,7 @@ $(document).on('change', '.form-check-input', function() {
     });
   }
 
-const loginLink = document.querySelector("a[href=\"{{ url_for('login') }}\"]");
+const loginLink = document.querySelector("a[href=\"https://bulkin228sich.github.io/todo/templates/login.html\"]");
 loginLink.addEventListener("click", function(event) {
   // Здесь вы можете разместить код для обработки события нажатия на ссылку
   localStorage.removeItem("user");
