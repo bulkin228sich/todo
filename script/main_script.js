@@ -296,6 +296,7 @@ const loginLink = document.querySelector("a[href=\"https://bulkin228sich.github.
 loginLink.addEventListener("click", function(event) {
   // Здесь вы можете разместить код для обработки события нажатия на ссылку
   localStorage.removeItem("user");
+  sessionStorage.clear();
 });
 
 document.getElementById("sortTask").addEventListener("click", function() {
